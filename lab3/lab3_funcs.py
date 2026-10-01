@@ -1,3 +1,4 @@
+import operator as op
 # --------------------------------------------------------------
 # 1) TMU Letter Grade Converter
 # --------------------------------------------------------------
@@ -21,8 +22,19 @@ def lettergrade(pct):
     If the value of pct is outside this range, return None.
 
     '''
+    match pct:
+        case pct if 100 >= pct >= 80:
+            return 'A'
+        case pct if 79 >= pct >= 70:
+            return 'B'
+        case pct if 69 >= pct >= 60:
+            return 'C'
+        case pct if 59 >= pct >= 50:
+            return 'D'
+        case pct if 49 >= pct >= 0:
+            return 'F'
 
-    pass # replace 'pass' with a return statement.
+    return None
 
 
 # --------------------------------------------------------------
@@ -57,8 +69,21 @@ def duplicates(items):
     science that you will explore further in future courses. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    if len(items) != 3:
+        return 'invalid input'
+    count = 0
+    seen = set()
+    for i in range(3):
+        if items[i] in seen:
+            count += 1
+        else:
+            seen.add(items[i])
+    if count == 0:
+        return 'one-of-a-kind'
+    elif count == 1:
+        return 'two-of-a-kind'
+    else:
+        return 'three-of-a-kind'
     
     
 # --------------------------------------------------------------
@@ -111,8 +136,38 @@ def inversions(items):
     the end of the course, and in future courses.
     
     '''
+    if len(items) != 3:
+        return -1
+    '''
+    Considering larger inputs len n, runtime of merge sort to count num of inversions leads to O(nlogn) (logn height of recursive tree and n iterations each level)
+    rather than a naive approach like insertion sort which at worstcase has to compare every ele with every prev ele that takes O(n^2)
+    '''
+    def merge_sort_count_inv(nums):
+        if len(nums) <= 1:
+            return nums, 0
+        mid = len(nums) // 2
+        left, left_inv = merge_sort_count_inv(nums[0:mid])
+        right, right_inv = merge_sort_count_inv(nums[mid:len(nums)])
+        l1 = 0
+        l2 = 0
+        res = []
+        inv = 0
+        while l1 < len(left) and l2 < len(right):
+            if left[l1] <= right[l2]:
+                res.append(left[l1])
+                l1 += 1
+            else:
+                res.append(right[l2])
+                l2 += 1
+                inv += len(left) - l1
+        if l1 < len(left):
+            res.extend(left[l1:])
+        elif l2 < len(right):
+            res.extend(right[l2:])
+        return res, inv + left_inv + right_inv
 
-    pass # replace 'pass' with a return statement.    
+    _, invs = merge_sort_count_inv(items)
+    return invs
     
     
 # --------------------------------------------------------------
@@ -149,8 +204,15 @@ def increasing(items, strict):
     
     LOOPING IS NOT REQUIRED TO SOLVE THIS PROBLEM!
     '''
-    
-    pass # replace 'pass' with a return statement.
+    if len(items) != 3 or not isinstance(strict, bool):
+        return "invalid input"
+    prev = items[0]
+    for i in range(1, 3):
+        if strict and items[i] > prev or not strict and items[i] >= prev:
+            prev = items[i]
+        else:
+            return False
+    return True
    
    
 # --------------------------------------------------------------
@@ -180,7 +242,15 @@ def calculator(op1, op2, operator):
     would be a division by zero, return None.
     '''
     
-    pass # replace 'pass' with a return statement.
+    ops = {
+        '+': op.add, 
+        '-': op.sub, 
+        '*': op.mul, 
+        '/': op.truediv, 
+        '**': op.pow}
+    if operator not in ops or operator == "/" and op2 == 0:
+        return None
+    return ops[operator](float(op1), float(op2))
     
     
         
