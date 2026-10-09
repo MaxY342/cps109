@@ -21,8 +21,9 @@ def mixedfraction(num, den):
     
     If the denominator is 0, return None.
     '''
-
-    pass # replace 'pass' with a return statement.
+    if den == 0:
+        return None
+    return(num//den, num%den, den)
 
 
 # --------------------------------------------------------------
@@ -54,8 +55,16 @@ def iscyclops(n):
     ready for a challenge if you attempt them.
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    nString = str(n)
+    if len(nString) % 2 == 0:
+        return False
+    mid = len(nString)//2
+    for i in range(len(nString)):
+        if i == mid and nString[i] != '0':
+            return False
+        elif i != mid and nString[i] == '0':
+            return False
+    return True
 
 
 
@@ -78,8 +87,15 @@ def paritypartition(items):
     this function should return:        [0, 4, 2, 7, -1, 3, 1] 
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    even = []
+    odd = []
+    for item in items:
+        if item % 2 == 0:
+            even.append(item)
+        else:
+            odd.append(item)
+    even.extend(odd)
+    return even
 
 
 # --------------------------------------------------------------
@@ -100,8 +116,15 @@ def altsignsum(items):
     If the input is the empty list, return 0
 
     ''' 
-
-    pass # replace 'pass' with a return statement.
+    if len(items) == 0:
+        return 0
+    res = items[0]
+    for i in range(1, len(items)):
+        if i % 2 == 0:
+            res += items[i]
+        else:
+            res -= items[i]
+    return res
 
 
 # --------------------------------------------------------------
@@ -132,8 +155,14 @@ def domninocycle(tiles):
     does not match the 2nd value on the last tile (3)
     
     '''
-
-
-
-    pass # replace 'pass' with a return statement.
+    if not tiles:
+        return True
+    prev = None
+    for tile in tiles:
+        if prev and prev != tile[0]:
+            return False
+        prev = tile[1]
+    if tiles[0][0] != tiles[len(tiles)-1][1]:
+        return False
+    return True
 
