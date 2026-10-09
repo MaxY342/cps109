@@ -20,9 +20,12 @@ def sumeven(n):
     without writing a loop at all?
     
     '''
-
-    pass # replace 'pass' with a return statement.
-
+    res = 0
+    cur = 0
+    for _ in range(n):
+        res += cur
+        cur += 2
+    return res
 
 # --------------------------------------------------------------
 # 2) Summing Squares
@@ -44,8 +47,12 @@ def sumsquares(n):
     own code you wrote previously!
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = 0
+    cur = 1
+    for _ in range(n):
+        res += cur * cur
+        cur += 1
+    return res
 
 
 # --------------------------------------------------------------
@@ -69,9 +76,11 @@ def odddigitsum(num):
     bring this up here of all places...? 
     
     '''
-
-    pass # replace 'pass' with a return statement.    
-    
+    res = 0
+    for char in str(abs(num)):
+        if int(char) % 2 != 0:
+            res += int(char)
+    return res  
     
 # --------------------------------------------------------------
 # 4) Listing Exponentials
@@ -93,8 +102,10 @@ def listexponential(n, base):
     every day for a month? 
    
     '''
-
-    pass # replace 'pass' with a return statement. 
+    res = []
+    for i in range(n):
+        res.append(base**i)
+    return res
     
     
 # --------------------------------------------------------------
@@ -115,8 +126,13 @@ def digitcat(s):
     If there are no digits, return None.
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = ''
+    for char in s:
+        if char.isdigit():
+            res += char
+    if len(res) == 0:
+        return None
+    return int(res)
     
     
 # --------------------------------------------------------------
@@ -141,8 +157,8 @@ def stringtofloatlist(fltstr):
     either way!
     
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = fltstr.split(',')
+    return [float(num) for num in res]
 
     
 # --------------------------------------------------------------
@@ -181,8 +197,28 @@ def maxbytype(items):
     string if there is no string?
 
     '''
+    largestInt = None
+    largestFloat = None
+    largestStr = None
+    for item in items:
+        if type(item) == int:
+            if not largestInt:
+                largestInt = item
+                continue
+            largestInt = max(largestInt, item)
+        elif type(item) == float:
+            if not largestFloat:
+                largestFloat = item
+                continue
+            largestFloat = max(largestFloat, item)
+        else:
+            if not largestStr:
+                largestStr = item
+                continue
+            if ord(item[0]) > ord(largestStr[0]):
+                largestStr = item
 
-    pass # replace 'pass' with a return statement.
+    return (largestInt, largestFloat, largestStr)
     
 
     
