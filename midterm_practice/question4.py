@@ -33,7 +33,12 @@ def pyramid_blocks(n, m):
     reaches 1 first. Assume n and m are integers. Return the number 
     of blocks in the pyramid.
     '''
-    pass # replace 'pass' with a return statement.
+    res = 0
+    while n >= 1 and m >= 1:
+        res += n * m
+        n -= 1
+        m -= 1
+    return res
 
 # --------------------------------------------------------------
 # The Testing

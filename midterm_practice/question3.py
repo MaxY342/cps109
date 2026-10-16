@@ -31,9 +31,15 @@ def integers_exceed(n):
     For example, if n is 11, we must add 1+2+3+4+5 = 15,
     and therefore the answer is 5.
     '''
-
-    pass
-
+    res = 0
+    summ = 0
+    cur = 1
+    while True:
+        summ += cur
+        cur += 1
+        res += 1
+        if summ > n:
+            return res
 # --------------------------------------------------------------
 # The Testing
 # --------------------------------------------------------------

@@ -33,8 +33,22 @@ def first_letter(digits):
     of five, one, one, three are f, o, o, t.  
     Similarly, '0123456789613' returns 'zottffssensot'.
     '''
-
-    pass
+    digitToChar = {
+        '0': 'z',
+        '1': 'o',
+        '2': 't',
+        '3': 't',
+        '4': 'f',
+        '5': 'f',
+        '6': 's',
+        '7': 's',
+        '8': 'e',
+        '9': 'n'
+    }
+    res = ''
+    for char in digits:
+        res += digitToChar[char]
+    return res
 
 # --------------------------------------------------------------
 # The Testing

@@ -42,8 +42,21 @@ def roman_to_arabic(rn):
     IX   = 9
     X    = 10
     '''
-    
-    pass 
+    numeralToNumber = {
+        'I': 1,
+        'II': 2,
+        'III': 3,
+        'IV': 4,
+        'V': 5,
+        'VI': 6,
+        'VII': 7,
+        'VIII': 8,
+        'IX': 9,
+        'X': 10
+    }
+    if rn in numeralToNumber:
+        return numeralToNumber[rn]
+    return None
     
 
 # --------------------------------------------------------------

@@ -32,7 +32,13 @@ def deduplicate(s):
     since it changes the 'ee' to 'e'.
     'boomboomeeraaang' returns 'bombomerang' .
     '''
-    pass # replace 'pass' with a return statement.
+    res = ''
+    prev = ''
+    for char in s:
+        if char != prev:
+            res += char
+            prev = char
+    return res
 
 
 # --------------------------------------------------------------

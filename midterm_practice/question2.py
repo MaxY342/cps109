@@ -30,8 +30,11 @@ def sum_even(n):
     Return the sum of the integers, between 1-n inclusive, 
     that are even
     '''
-    
-    pass
+    res = 0
+    for i in range(1, n+1):
+        if i % 2 == 0:
+            res += i
+    return res
 
 # --------------------------------------------------------------
 # The Testing
