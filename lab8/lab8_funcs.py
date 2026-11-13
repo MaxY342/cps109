@@ -28,8 +28,14 @@ def sum_words(items):
     to catch runtime errors if they happen.
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = 0
+    for item in items:
+        try:
+            num = int(item)
+            res += num
+        except ValueError:
+            continue
+    return res
 
     
 # --------------------------------------------------------------
@@ -60,8 +66,16 @@ def max_pop(items):
     HINT: you do not need to say the type of exception, just say except
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    cur = 0
+    res = ''
+    for item in items:
+        try:
+            cur = max(item[1], cur)
+            if cur == item[1]:
+                res = item[0]
+        except:
+            return None
+    return res
 
 
 # --------------------------------------------------------------
@@ -90,8 +104,14 @@ def product_by_index(items, ids) :
     a try/except block.    
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = 1
+    for i in ids:
+        try:
+            x = items[i]
+            res *= x
+        except:
+            return None
+    return res
 
 
 # --------------------------------------------------------------
@@ -114,8 +134,20 @@ def coins(s) :
     money('43') raises ValueError
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    res = 0
+    coins = {
+        'q': 25,
+        'p': 1, 
+        'd': 10,
+        'n': 5
+    }
+    for char in s:
+        try:
+            val = coins[char]
+            res += val
+        except KeyError:
+            raise ValueError
+    return res
 
 
 # --------------------------------------------------------------
@@ -136,8 +168,16 @@ def check_name(first, last):
 
     If either name is not valid, raise a ValueError exception.
     '''
-
-    pass # replace 'pass' with a return statement.
+    def verify_name(name):
+        for i in range(len(name)):
+            if not name[i].isalpha():
+                raise ValueError
+            if i == 0 and name[i].islower():
+                raise ValueError
+            elif i != 0 and name[i].isupper():
+                raise ValueError
+        return name
+    return f'{verify_name(last)}, {verify_name(first)}'
 
 
 # --------------------------------------------------------------
@@ -158,6 +198,11 @@ def get_next_int(it):
     to catch the StopIteration error when it occurs. 
 
     '''
-
-    pass # replace 'pass' with a return statement.
+    try:
+        cur = next(it)
+        while type(cur) != int:
+            cur = next(it)
+        return cur
+    except StopIteration:
+        return None
 
